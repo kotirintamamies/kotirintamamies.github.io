@@ -7,10 +7,10 @@
   <body>
 
     <script>
-    var camera, scene, renderer;
+    var camera, spotlight, scene, renderer;
 var geometry, material, mesh;
 var currentPosition = {x: 0, z: 0}
-var endPosition = {x: 200, z: 300}
+var endPosition = {x: 250, z: 300}
 
 init();
 animate();
@@ -20,8 +20,8 @@ function init() {
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.z = 2000;
     camera.position.y = 50;
-
-
+    spotlight = new THREE.PointLight(0xFFFFFF, 0.7, 500, 2)
+    spotlight.position.set(0,0,0)
     scene = new THREE.Scene();
 
     scene.fog = new THREE.FogExp2( 0x000000, 0.0028 );
@@ -46,8 +46,8 @@ function init() {
     loader.load('https://kotirintamamies.github.io/js/font.json', function(font)
     {
         var text = new THREE.TextGeometry("hippo", { size: 100, font: font});
-        var textMaterial = new THREE.MeshPhongMaterial( { color: 0xff00ff, wireframe: false, fog: false} );
-        var textMesh = new THREE.Mesh(text, material)
+        var textMaterial = new THREE.MeshPhongMaterial( { color: 0xff00ff, shading: THREE.FlatShading } );
+        var textMesh = new THREE.Mesh(text, textMaterial)
         textMesh.position.z = 100;
         textMesh.position.x = 100;
         scene.add(textMesh);
@@ -58,7 +58,9 @@ function init() {
 
     scene.add(mesh);
 
-
+    var light = new THREE.AmbientLight( 0x404040 );
+    scene.add(light);
+    scene.add(spotlight);
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -87,7 +89,9 @@ function animate() {
 
     camera.position.x = currentPosition.x;
     camera.position.z = currentPosition.z;
-
+    spotlight.position.set(camera.position.x, camera.position.y, camera.position.z);
+    console.log();
+    console.log(spotlight.position);
    // mesh.rotation.x += 0.01;
    // mesh.rotation.y += 0.02;
 
