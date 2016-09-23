@@ -2,8 +2,96 @@
 <html>
   <head>
     <title>coming soon</title>
+    <script src="js/three.min.js"></script>
   </head>
   <body>
-    <h1>coming soon</h1>
+
+    <script>
+    var camera, scene, renderer;
+var geometry, material, mesh;
+var currentPosition = {x: 0, z: 0}
+var endPosition = {x: 100, z: 100}
+
+init();
+animate();
+
+function init() {
+
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+    camera.position.z = 2000;
+    camera.position.y = 50;
+
+
+    scene = new THREE.Scene();
+
+    scene.fog = new THREE.FogExp2( 0x000000, 0.0028 );
+
+    sun = new THREE.SphereGeometry(1000, 10, 10);
+
+
+    material = new THREE.MeshBasicMaterial({
+        color: 0xffBB00,
+        wireframe: false   });
+
+    material.fog = false;
+
+    var grid = new THREE.GridHelper( 2000, 100 ,0xFF00FF, 0xFF00FF);
+    scene.add( grid );
+
+    mesh = new THREE.Mesh(sun, material);
+
+    mesh.position.z = -4000;
+    mesh.position.y = 1500;
+
+    var loader = new THREE.FontLoader();
+    loader.load('js/gentilis_regular.typeface.json', function(font)
+    {
+        var text = new THREE.TextGeometry("hippo", { size: 50, font: font});
+    })
+
+
+    var textMesh = new THREE.Mesh(text)
+    textMesh.position.z = 100;
+    textMesh.position.x = 100;
+
+    scene.add(mesh);
+    scene.add(textMesh);
+
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    document.body.appendChild(renderer.domElement);
+
+}
+
+
+
+
+function getMovement(current, end)
+{
+  return (end-current)/20
+}
+
+function animate() {
+
+    requestAnimationFrame(animate);
+    currentPosition.x = camera.position.x;
+    currentPosition.z = camera.position.z;
+
+    if (currentPosition.x<endPosition.x-0.1) currentPosition.x+=getMovement(currentPosition.x, endPosition.x);
+    if (currentPosition.x>endPosition.x+0.1) currentPosition.x+=getMovement(currentPosition.x, endPosition.x);
+    if (currentPosition.z<endPosition.z-0.1) currentPosition.z+=getMovement(currentPosition.z, endPosition.z);
+    if (currentPosition.z>endPosition.z+0.1) currentPosition.z+=getMovement(currentPosition.z, endPosition.z);
+
+    camera.position.x = currentPosition.x;
+    camera.position.z = currentPosition.z;
+
+   // mesh.rotation.x += 0.01;
+   // mesh.rotation.y += 0.02;
+
+    renderer.render(scene, camera);
+
+}
+    </script>
   </body>
 </html>
