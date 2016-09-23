@@ -43,7 +43,7 @@ function init() {
     mesh.position.y = 1500;
 
     var loader = new THREE.FontLoader();
-    loader.load('https://kotirintamamies.github.io/js/gentilis_regular.typeface.json', function(font)
+    loader.load('https://kotirintamamies.github.io/js/font.json', function(font)
     {
         var text = new THREE.TextGeometry("hippo", { size: 100, font: font});
         var textMaterial = new THREE.MeshPhongMaterial( { color: 0xff00ff, wireframe: false, fog: false} );
