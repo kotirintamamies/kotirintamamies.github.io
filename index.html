@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
   <head>
+    <link rel="stylesheet" type = "text/css" href="css/stylesheet.css" />
     <title>coming soon</title>
-    <script src="js/three.min.js"></script>
+
   </head>
   <body>
-
+    <h1>pockets full of hawthornes</h1>
+    <div id="scene"></div>
+    <script src="js/angular.min.js"></script>
+    <script src="js/three.min.js"></script>
     <script>
     var camera, spotlight, scene, renderer;
 var geometry, material, mesh;
@@ -26,8 +30,8 @@ function init() {
 
     scene.fog = new THREE.FogExp2( 0x000000, 0.0028 );
 
-    sun = new THREE.SphereGeometry(1000, 10, 10);
-
+    var sun = new THREE.SphereGeometry(1000, 10, 10);
+    mesh = new THREE.Mesh(sun, material);
 
     material = new THREE.MeshBasicMaterial({
         color: 0xffBB00,
@@ -35,9 +39,9 @@ function init() {
 
 
     var grid = new THREE.GridHelper( 2000, 100 ,0xFF00FF, 0xFF00FF);
-    scene.add( grid );
 
-    mesh = new THREE.Mesh(sun, material);
+
+
 
     mesh.position.z = -4000;
     mesh.position.y = 1500;
@@ -57,6 +61,7 @@ function init() {
 
 
     scene.add(mesh);
+    scene.add(grid);
 
     var light = new THREE.AmbientLight( 0x404040 );
     scene.add(light);
@@ -64,7 +69,8 @@ function init() {
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    document.body.appendChild(renderer.domElement);
+    var container = document.getElementById('scene')
+    container.appendChild(renderer.domElement);
 
 }
 
@@ -90,8 +96,6 @@ function animate() {
     camera.position.x = currentPosition.x;
     camera.position.z = currentPosition.z;
     spotlight.position.set(camera.position.x, camera.position.y, camera.position.z);
-    console.log();
-    console.log(spotlight.position);
    // mesh.rotation.x += 0.01;
    // mesh.rotation.y += 0.02;
 
