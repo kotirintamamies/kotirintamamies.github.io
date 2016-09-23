@@ -2,11 +2,12 @@
 <html ng-app="app">
   <head>
     <link rel="stylesheet" type = "text/css" href="css/stylesheet.css" />
+    <link rel="stylesheet" type = "text/css" href="css/stylesheet.css" />
     <title>coming soon</title>
 
   </head>
   <body>
-    <h1>pockets full of hawthornes</h1>
+    <center><h1>Pockets full of hawthornes</h1></center>
     <div id="scene"></div>
     <script src="js/angular.min.js"></script>
     <script src="js/three.min.js"></script>
@@ -14,7 +15,7 @@
     var camera, spotlight, scene, renderer;
 var geometry, material, mesh;
 var currentPosition = {x: 0, z: 0}
-var endPosition = {x: 250, z: 300}
+var endPosition = {x: 200, z: 400}
 
 init();
 animate();
@@ -23,21 +24,21 @@ function init() {
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.z = 2000;
-    camera.position.y = 50;
-    spotlight = new THREE.PointLight(0xFFFFFF, 0.7, 500, 2)
+    camera.position.y = 80;
+    spotlight = new THREE.PointLight(0xFFFFFF, 0.7, 700, 1)
     spotlight.position.set(0,0,0)
     scene = new THREE.Scene();
 
     scene.fog = new THREE.FogExp2( 0x000000, 0.0028 );
 
-    var sun = new THREE.SphereGeometry(1000, 10, 10);
-    mesh = new THREE.Mesh(sun, material);
+    sun = new THREE.SphereGeometry(1000, 10, 10);
+
 
     material = new THREE.MeshBasicMaterial({
         color: 0xffBB00,
         wireframe: false, fog: false   });
 
-
+    mesh = new THREE.Mesh(sun, material);
     var grid = new THREE.GridHelper( 2000, 100 ,0xFF00FF, 0xFF00FF);
 
 
@@ -49,11 +50,12 @@ function init() {
     var loader = new THREE.FontLoader();
     loader.load('https://kotirintamamies.github.io/js/font.json', function(font)
     {
-        var text = new THREE.TextGeometry("hippo", { size: 100, font: font});
-        var textMaterial = new THREE.MeshPhongMaterial( { color: 0xff00ff, shading: THREE.FlatShading } );
+        var text = new THREE.TextGeometry("Hippo", { size: 60, font: font});
+        var textMaterial = new THREE.MeshPhongMaterial( { color: 0x40FFff, shading: THREE.FlatShading } );
         var textMesh = new THREE.Mesh(text, textMaterial)
         textMesh.position.z = 100;
         textMesh.position.x = 100;
+        textMesh.position.y = 50;
         scene.add(textMesh);
     })
 

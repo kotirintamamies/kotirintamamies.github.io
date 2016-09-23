@@ -1,3 +1,8 @@
+@font-face
+{
+  font-family: lazer84; src: url('Lazer84.ttf')
+}
+
 #scene
 {
   position: absolute;
@@ -6,4 +11,14 @@
   right: 0px;
   bottom:0px;
   overflow: hidden;
+}
+body
+{
+  background-color: #200020;
+}
+h1
+{
+  font-family: lazer84;
+  font-size: 40pt;;
+  color: #DDDDDD;
 }
