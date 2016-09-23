@@ -10,7 +10,7 @@
     var camera, scene, renderer;
 var geometry, material, mesh;
 var currentPosition = {x: 0, z: 0}
-var endPosition = {x: 100, z: 100}
+var endPosition = {x: 200, z: 300}
 
 init();
 animate();
@@ -31,9 +31,8 @@ function init() {
 
     material = new THREE.MeshBasicMaterial({
         color: 0xffBB00,
-        wireframe: false   });
+        wireframe: false, fog: false   });
 
-    material.fog = false;
 
     var grid = new THREE.GridHelper( 2000, 100 ,0xFF00FF, 0xFF00FF);
     scene.add( grid );
@@ -44,18 +43,21 @@ function init() {
     mesh.position.y = 1500;
 
     var loader = new THREE.FontLoader();
-    loader.load('js/gentilis_regular.typeface.json', function(font)
+    loader.load('https://kotirintamamies.github.io/js/gentilis_regular.typeface.json', function(font)
     {
-        var text = new THREE.TextGeometry("hippo", { size: 50, font: font});
+        var text = new THREE.TextGeometry("hippo", { size: 100, font: font});
+        var textMaterial = new THREE.MeshPhongMaterial( { color: 0xff00ff, wireframe: false, fog: false} );
+        var textMesh = new THREE.Mesh(text, material)
+        textMesh.position.z = 100;
+        textMesh.position.x = 100;
+        scene.add(textMesh);
     })
 
 
-    var textMesh = new THREE.Mesh(text)
-    textMesh.position.z = 100;
-    textMesh.position.x = 100;
+
 
     scene.add(mesh);
-    scene.add(textMesh);
+
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
