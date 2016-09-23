@@ -19,6 +19,21 @@ body
 h1
 {
   font-family: lazer84;
-  font-size: 40pt;;
+  font-size: 36pt;;
   color: #DDDDDD;
+  cursor: pointer;
+}
+
+h2
+{
+  font-family: lazer84;
+  font-size: 16pt;;
+  color: #bb00bb;
+}
+
+h2 a
+{
+  color: #00bbbb;
+  cursor: pointer;
+
 }
