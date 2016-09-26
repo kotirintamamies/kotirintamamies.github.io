@@ -77,7 +77,13 @@ function init() {
     mesh.position.z = -8000;
     mesh.position.y = 1500;
 
-
+    var texture = THREE.ImageUtils.loadTexture( "https://kotirintamamies,github.io/testikuva.jpg" );
+    var sydeem = new THREE.MeshLambertMaterial({map: texture});
+    var plan = new THREE.Mesh(new THREE.PlaneGeometry(400, 400), sydeem)
+    plan.material.side = THREE.DoubleSide;
+    plan.position.x=100;
+    plan.rotation.z = Math.Pi/2;
+    scene.add(plan)
 
     var grid = new THREE.GridHelper( 5000, 200 ,0xFF00FF, 0xFF00FF);
 
