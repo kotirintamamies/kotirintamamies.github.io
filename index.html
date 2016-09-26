@@ -9,7 +9,7 @@
   <body ng-controller="main">
     <center><h1 ng-click="changeposition({x:0, y:0, z:0})">Sebastian Laitila</h1></center>
     <center>
-      <h2 > <a ng-click="changeposition({x:1200, y:0, z:900})"> testi </a>|
+      <h2 > <a ng-click="changeposition({x:1200, y:0, z:1000})"> testi </a>|
       <a ng-click="changeposition({x:-1400, y:0, z:-800})"> testi </a>|
       <a ng-click="changeposition({x:1200, y:0, z:2000})"> testi </a></h2>
 
@@ -26,7 +26,6 @@ var endPosition = {x: 0, z: 0}
 var objects =
 [
 {content: "Welcome!", position: {x: 0, y: 50, z: 0}},
-{content: "Features!", position: {x: 1200, y: 50, z: 900}},
 {content: "Testing!", position: {x: -1400, y: 50, z: -800}},
 {content: "Kyber!", position: {x: 1200, y: 50, z: 2000}},
 ]
@@ -76,10 +75,6 @@ function init() {
     mesh = new THREE.Mesh(sun, material);
     mesh.position.z = -8000;
     mesh.position.y = 1500;
-
-    var loader = new THREE.TextureLoader(  );
-    loader.crossOrigin = true;
-    var texture = loader.load("https://kotirintamamies.github.io/testikuva.jpg", onTextureLoad)
 
     var grid = new THREE.GridHelper( 5000, 200 ,0xFF00FF, 0xFF00FF);
 
@@ -146,15 +141,6 @@ function animate() {
 
 }
 
-function onTextureLoad(texture)
-{
-var sydeem = new THREE.MeshLambertMaterial({map: texture});
-var plan = new THREE.Mesh(new THREE.PlaneGeometry(400, 400), sydeem)
-plan.material.side = THREE.DoubleSide;
-plan.position.x=100;
-plan.rotation.z = Math.Pi/2;
-scene.add(plan)
-}
     </script>
   </body>
 </html>
