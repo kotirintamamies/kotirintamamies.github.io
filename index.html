@@ -9,10 +9,13 @@
   <body ng-controller="main">
     <center><h1 ng-click="changeposition({x:0, y:0, z:0})">Sebastian Laitila</h1></center>
     <center>
-      <h2 > <a ng-click="changeposition({x:1200, y:0, z:1000})"> testi </a>|
-      <a ng-click="changeposition({x:-1400, y:0, z:-800})"> testi </a>|
-      <a ng-click="changeposition({x:1200, y:0, z:2000})"> testi </a></h2>
-
+      <h3>
+        <a ng-click="changeposition({x:-1200, y:0, z:-1000})"> Outrun </a>|
+        <a ng-click="changeposition({x:-1100, y:0, z:-1000})"> Blinds </a>|
+        <a ng-click="changeposition({x:-1000, y:0, z:-1000})"> Fish </a>|
+        <a ng-click="changeposition({x:-900, y:0, z:-1000})"> Bass </a>|
+        <a ng-click="changeposition({x:-800, y:0, z:-1000})"> King </a>|
+      </h3>
     </center>
     <div id="scene"></div>
     <script src="js/angular.min.js"></script>
@@ -25,9 +28,7 @@ var currentPosition = {x: 2000, z: 0}
 var endPosition = {x: 0, z: 0}
 var objects =
 [
-{content: "Welcome!", position: {x: 0, y: 50, z: 0}},
-{content: "Testing!", position: {x: -1400, y: 50, z: -800}},
-{content: "Kyber!", position: {x: 1200, y: 50, z: 2000}},
+{content: "Welcome!", position: {x: 0, y: 100, z: 0}},
 ]
 init();
 animate();
@@ -37,14 +38,14 @@ function maketext (content, position)
   var loader = new THREE.FontLoader();
   loader.load('https://kotirintamamies.github.io/js/font.json', function(font)
   {
-      var text = new THREE.TextGeometry(content, { size: 60, font: font,  height: 4});
+      var text = new THREE.TextGeometry(content, { size: 20, font: font,  height: 4});
       var textMaterial = new THREE.MeshPhongMaterial( { color: 0x40FFff, shading: THREE.FlatShading} );
       var textMesh = new THREE.Mesh(text, textMaterial)
       var text_bbox = new THREE.Box3();
 
 
       text_bbox.setFromObject(textMesh);
-      textMesh.position.z = position.z-500;
+      textMesh.position.z = position.z-150;
       textMesh.position.x = position.x-(text_bbox.min.x+text_bbox.max.x)/2;
       textMesh.position.y = position.y;
       scene.add(textMesh);
@@ -57,7 +58,7 @@ function init() {
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.z = 2000;
     camera.position.y = 80;
-    spotlight = new THREE.PointLight(0xFFFFFF, 1, 1500, 1)
+    spotlight = new THREE.PointLight(0xFFFFFF, 3, 200, 1)
     spotlight.position.set(0,0,0)
     scene = new THREE.Scene();
     objects.forEach(function(obj) {maketext(obj.content, obj.position);})

@@ -7,24 +7,26 @@ app.controller('main', function($scope)
       endPosition = position;
   }
 
-  loadObject("outrun");
+  var objects = ["outrun", "blinds", "fish", "bass", "king"];
+  for(var i = 0; i<objects.length;i++)
+  {
+    loadObject(objects[i], {x: -1200+i*100, y: 100, z: -1100 });
+  }
 
-  function loadObject(objectName)
+
+  function loadObject(objectName, position)
   {
     var jsonload = new THREE.ObjectLoader();
     jsonload.load("gallery/"+objectName+".json",
     function(object)
     {
-      object.position.x = 1200
-      object.position.y= 100;
-      object.position.z= 900;
-      console.log(object.position)
-      object.scale.x = 10
-      object.scale.y = 10
-      object.scale.z = 10
-      //console.log(geometry);
-      //var mater = new THREE.MultiMaterial(materials);
-
+      object.rotation.y = Math.PI
+      object.position.x = position.x
+      object.position.y= position.y;
+      object.position.z= position.z;
+      object.scale.x = 9
+      object.scale.y = 9
+      object.scale.z = 3
 
       scene.add(object);
     });
