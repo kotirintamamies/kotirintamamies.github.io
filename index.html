@@ -33,8 +33,6 @@ var objects =
 init();
 animate();
 
-
-
 function maketext (content, position)
 {
   var loader = new THREE.FontLoader();
@@ -47,7 +45,7 @@ function maketext (content, position)
 
 
       text_bbox.setFromObject(textMesh);
-      textMesh.position.z = position.z-300;
+      textMesh.position.z = position.z-500;
       textMesh.position.x = position.x-(text_bbox.min.x+text_bbox.max.x)/2;
       textMesh.position.y = position.y;
       scene.add(textMesh);
@@ -66,7 +64,7 @@ function init() {
     objects.forEach(function(obj) {maketext(obj.content, obj.position);})
 
 
-    scene.fog = new THREE.FogExp2( 0x000000, 0.0028 );
+    scene.fog = new THREE.FogExp2( 0x000000, 0.001 );
 
     sun = new THREE.SphereGeometry(1000, 10, 10);
 
@@ -125,8 +123,6 @@ function animate() {
     camera.position.x = currentPosition.x;
     camera.position.z = currentPosition.z;
     spotlight.position.set(camera.position.x, camera.position.y, camera.position.z);
-   // mesh.rotation.x += 0.01;
-   // mesh.rotation.y += 0.02;
 
     renderer.render(scene, camera);
 
