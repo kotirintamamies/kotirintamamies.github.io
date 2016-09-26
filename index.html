@@ -2,7 +2,7 @@
 <html ng-app="app">
   <head>
     <link rel="stylesheet" type = "text/css" href="css/stylesheet.css" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
     <title>Sebastian Laitila's homepage</title>
 
   </head>
@@ -82,10 +82,10 @@ function init() {
     var grid = new THREE.GridHelper( 5000, 200 ,0xFF00FF, 0xFF00FF);
 
     var groundMat = new THREE.MeshBasicMaterial({wireframe: true, color: 0x006020, side: THREE.DoubleSide, fog: false});
-    var plane = new THREE.PlaneGeometry(35000, 500, 9, 4);
+    var plane = new THREE.PlaneGeometry(15000, 500, 9, 4);
     var mountains = new THREE.Mesh(plane, groundMat)
-    mountains.position.z = -4500;
-    mountains.position.y=-50
+    mountains.position.z = -2500;
+    mountains.position.y=100
     mountains.rotation.x= -90;
     var vertexMap = [
       -100, -100, -100, -100, -100, -100, -100, -100, -100, -100,
