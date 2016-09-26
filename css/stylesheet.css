@@ -1,7 +1,11 @@
 @font-face
 {
-  font-family: lazer84; src: url('Lazer84.ttf');
-  font-family: streamster; src: url('Streamster.ttf');
+  font-family: lazer84; src: url('Lazer84.ttf')
+}
+
+@font-face
+{
+font-family: streamster; src: url('Streamster.ttf');
 }
 
 #scene
