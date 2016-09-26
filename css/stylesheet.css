@@ -1,6 +1,7 @@
 @font-face
 {
-  font-family: lazer84; src: url('Lazer84.ttf')
+  font-family: lazer84; src: url('Lazer84.ttf');
+  font-family: streamster; src: url('Streamster.ttf');
 }
 
 #scene
@@ -16,10 +17,16 @@ body
 {
   background-color: #200020;
 }
+p
+{
+  font-family: helvetica;
+  color: #FFFF00;
+  text-transform: uppercase;
+}
 h1
 {
   font-family: lazer84;
-  font-size: 3em;;
+  font-size: 2em;;
   color: #DDDDDD;
   cursor: pointer;
 }
@@ -42,7 +49,7 @@ h3 a
 {
   h1
   {
-    font-size: 2em;
+    font-size: 1.5em;
   }
 }
 @media (min-width: 1001px) and (max-width: 1500px)
