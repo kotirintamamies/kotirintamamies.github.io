@@ -25,10 +25,10 @@ var currentPosition = {x: 2000, z: 0}
 var endPosition = {x: 0, z: 0}
 var objects =
 [
-{content: "Welcome to my homepage!", position: {x: 0, y: 50, z: 0}},
-{content: "Testing features!", position: {x: 1200, y: 50, z: 900}},
-{content: "This is a menu item!", position: {x: -1400, y: 50, z: -800}},
-{content: "This is another menu item!", position: {x: 1200, y: 50, z: 2000}},
+{content: "Welcome!", position: {x: 0, y: 50, z: 0}},
+{content: "Features!", position: {x: 1200, y: 50, z: 900}},
+{content: "Testing!", position: {x: -1400, y: 50, z: -800}},
+{content: "Kyber!", position: {x: 1200, y: 50, z: 2000}},
 ]
 init();
 animate();
@@ -64,7 +64,7 @@ function init() {
     objects.forEach(function(obj) {maketext(obj.content, obj.position);})
 
 
-    scene.fog = new THREE.FogExp2( 0x000000, 0.001 );
+    scene.fog = new THREE.FogExp2( 0x000000, 0.0012 );
 
     sun = new THREE.SphereGeometry(1000, 10, 10);
 
@@ -74,17 +74,33 @@ function init() {
         wireframe: false, fog: false   });
 
     mesh = new THREE.Mesh(sun, material);
-    var grid = new THREE.GridHelper( 2000, 100 ,0xFF00FF, 0xFF00FF);
-
-
-
-
-    mesh.position.z = -4000;
+    mesh.position.z = -8000;
     mesh.position.y = 1500;
 
 
 
+    var grid = new THREE.GridHelper( 5000, 200 ,0xFF00FF, 0xFF00FF);
 
+    var groundMat = new THREE.MeshBasicMaterial({wireframe: true, color: 0x006020, side: THREE.DoubleSide, fog: false});
+    var plane = new THREE.PlaneGeometry(35000, 500, 9, 4);
+    var mountains = new THREE.Mesh(plane, groundMat)
+    mountains.position.z = -4500;
+    mountains.position.y=-50
+    mountains.rotation.x= -90;
+    var vertexMap = [
+      -100, -100, -100, -100, -100, -100, -100, -100, -100, -100,
+      -100, 100, 100, 0, -50, 0, 50, 300, 150, -100,
+      -100, 600, 800, 200, -50, 0, 200, 600, 300, -100,
+      -100, 100, 100, 0, -50, 0, 50, 300, 150, -100,
+      -100, -200, -100, -100, -100, -100, -100, -100, -100, -100,
+    ]
+    for(var i = 0, l=plane.vertices.length; i<l;i++)
+    {
+      var vertex=plane.vertices[i];
+      vertex.z = vertexMap[i]
+    }
+
+    scene.add(mountains)
 
 
     scene.add(mesh);
