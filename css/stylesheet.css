@@ -27,7 +27,7 @@ h1
 h2
 {
   font-family: lazer84;
-  font-size: 2em;;
+  font-size: 1.5em;;
   color: #bb00bb;
 }
 
@@ -46,7 +46,7 @@ h2 a
   }
   h2
   {
-    font-size: 1.5em;
+    
   }
 }
 @media (min-width: 1001px) and (max-width: 1500px)
